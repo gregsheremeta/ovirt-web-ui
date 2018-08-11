@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { renderRoutes } from 'react-router-config'
 
 import { Grid } from 'patternfly-react'
+import GlobalErrorBoundary from './components/GlobalErrorBoundary'
 import LoadingData from './components/LoadingData'
 import OvirtApiCheckFailed from './components/OvirtApiCheckFailed'
 import TokenExpired from './components/TokenExpired'
