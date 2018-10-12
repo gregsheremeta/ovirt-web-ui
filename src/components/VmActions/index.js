@@ -196,7 +196,6 @@ class VmActions extends React.Component {
       pool,
       isOnCard = false,
       onRemove,
-      location,
       isEditable,
     } = this.props
 
@@ -245,30 +244,6 @@ class VmActions extends React.Component {
         {actions.map(action => <ActionButtonWraper key={action.id} {...action} />)}
 
         <span className={style['button-spacer']} />
-
-        {location && /vm-legacy/.test(location.pathname) && (
-          <LinkButton
-            isOnCard={isOnCard}
-            shortTitle='Dashboard View'
-            tooltip='Dashboard View'
-            to={`/vm/${vm.get('id')}`}
-            button='btn btn-default'
-            className={`pficon pficon-edit ${style['action-link']}`}
-            id={`action-${vm.get('name')}-edit`}
-          />
-        )}
-
-        {location && /vm\//.test(location.pathname) && (
-          <LinkButton
-            isOnCard={isOnCard}
-            shortTitle='Normal View'
-            tooltip='Normal View'
-            to={`/vm-legacy/${vm.get('id')}`}
-            button='btn btn-default'
-            className={`pficon pficon-edit ${style['action-link']}`}
-            id={`action-${vm.get('name')}-edit`}
-          />
-        )}
 
         <LinkButton
           isOnCard={isOnCard}
