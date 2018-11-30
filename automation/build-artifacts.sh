@@ -14,11 +14,18 @@ mkdir -p exported-artifacts
 rm -rf tmp.repos
 rm -f ./*tar.gz
 
+# logging while we perfect the script
+# TODO: remove
+git log --no-merges -5
+git log -5
+git cherry --abbrev master
+git cherry --abbrev master | tail -1 | cut -d ' ' -f2
+
 # Resolve the release version (is this a snapshot build?)
 version_release="$(grep -m1 VERSION_RELEASE configure.ac | cut -d ' ' -f2 | sed 's/[][)]//g')"
 if [[ "${version_release}" == "0" ]]; then
     date="$(date --utc +%Y%m%d)"
-    commit="$(git log --no-merges -1 --pretty=format:%h)"
+    commit="$(git cherry --abbrev master | tail -1 | cut -d ' ' -f2)"
     version_release="0.${date}git${commit}"
     # update configure.ac with this
     sed -i -r "s/define\(\[VERSION_RELEASE\], \[0\]\)/define([VERSION_RELEASE], [${version_release}])/" configure.ac
